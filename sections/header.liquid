@@ -1,0 +1,68 @@
+<header id="SiteHeader" class="site-header" data-site-header>
+  <div class="page-width header-inner">
+    <button class="header-icon header-icon--menu" type="button" aria-expanded="false" aria-controls="MobileMenu" data-menu-toggle>
+      <span class="visually-hidden">Open menu</span>
+      <span aria-hidden="true">☰</span>
+    </button>
+
+    <div class="header-brand">
+      {% render 'logo' %}
+    </div>
+
+    <form class="header-search" action="{{ routes.search_url }}" method="get" role="search">
+      <label class="visually-hidden" for="HeaderSearch">Search products</label>
+      <input id="HeaderSearch" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products" aria-label="Search products">
+      <button type="submit" aria-label="Submit search">Search</button>
+    </form>
+
+    <nav class="header-actions" aria-label="Customer shortcuts">
+      <a href="{{ routes.account_url }}" class="header-icon" aria-label="Account">Account</a>
+      <button class="header-icon" type="button" aria-expanded="false" aria-controls="CartDrawer" data-cart-toggle>
+        Cart
+        <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </button>
+    </nav>
+  </div>
+
+  <nav id="MobileMenu" class="mobile-menu" aria-label="Mobile">
+    <ul class="mobile-menu-list" role="list">
+      {% for link in section.settings.menu.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <aside id="CartDrawer" class="cart-drawer" aria-label="Cart drawer" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2>Your cart</h2>
+      <button type="button" data-cart-toggle aria-label="Close cart">×</button>
+    </div>
+    {% if cart.item_count > 0 %}
+      <ul class="cart-items" role="list">
+        {% for item in cart.items %}
+          <li>
+            <a href="{{ item.url }}">{{ item.product.title }}</a>
+            <span>{{ item.quantity }} × {{ item.final_price | money }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <a class="button button--coral" href="{{ routes.cart_url }}">Checkout</a>
+    {% else %}
+      <p>Your cart is empty.</p>
+    {% endif %}
+  </aside>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

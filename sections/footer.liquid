@@ -1,0 +1,83 @@
+<footer class="site-footer">
+  <div class="page-width footer-grid">
+    <div>
+      <h2 class="footer-heading">ozaroo</h2>
+      <p class="footer-tagline">Where Australia Shops.</p>
+      <p>{{ section.settings.description }}</p>
+    </div>
+
+    <div>
+      <h3>Quick links</h3>
+      <ul role="list">
+        {% for link in section.settings.quick_links.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div>
+      <h3>Support</h3>
+      <ul role="list">
+        {% for link in section.settings.support_links.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div>
+      <h3>Newsletter</h3>
+      {% form 'customer', class: 'newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="visually-hidden" for="FooterEmail">Email</label>
+        <input id="FooterEmail" type="email" name="contact[email]" placeholder="Email address" required>
+        <button type="submit" class="button button--coral">Subscribe</button>
+      {% endform %}
+      <div class="footer-social" aria-label="Social media links">
+        <a href="{{ section.settings.facebook_url }}" aria-label="Facebook">Fb</a>
+        <a href="{{ section.settings.instagram_url }}" aria-label="Instagram">Ig</a>
+        <a href="{{ section.settings.tiktok_url }}" aria-label="TikTok">Tk</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Ozaroo – Where Australia Shops. Shop Smarter. Shop Ozaroo."
+    },
+    {
+      "type": "link_list",
+      "id": "quick_links",
+      "label": "Quick links",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "support_links",
+      "label": "Support links",
+      "default": "footer"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    }
+  ]
+}
+{% endschema %}
