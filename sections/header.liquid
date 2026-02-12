@@ -12,13 +12,13 @@
     <form class="header-search" action="{{ routes.search_url }}" method="get" role="search">
       <label class="visually-hidden" for="HeaderSearch">Search products</label>
       <input id="HeaderSearch" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products" aria-label="Search products">
-      <button type="submit" aria-label="Submit search">Search</button>
+      <button type="submit" class="header-search-submit" aria-label="Submit search">Search</button>
     </form>
 
     <nav class="header-actions" aria-label="Customer shortcuts">
-      <a href="{{ routes.account_url }}" class="header-icon" aria-label="Account">Account</a>
-      <button class="header-icon" type="button" aria-expanded="false" aria-controls="CartDrawer" data-cart-toggle>
-        Cart
+      <a href="{{ routes.account_url }}" class="header-icon header-icon--action" aria-label="Account">Account</a>
+      <button class="header-icon header-icon--action" type="button" aria-expanded="false" aria-controls="CartDrawer" data-cart-toggle>
+        <span>Cart</span>
         <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
       </button>
     </nav>
