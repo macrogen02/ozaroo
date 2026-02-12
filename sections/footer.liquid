@@ -32,10 +32,28 @@
         <input id="FooterEmail" type="email" name="contact[email]" placeholder="Email address" required>
         <button type="submit" class="button button--coral">Subscribe</button>
       {% endform %}
+
       <div class="footer-social" aria-label="Social media links">
-        <a href="{{ section.settings.facebook_url }}" aria-label="Facebook">Fb</a>
-        <a href="{{ section.settings.instagram_url }}" aria-label="Instagram">Ig</a>
-        <a href="{{ section.settings.tiktok_url }}" aria-label="TikTok">Tk</a>
+        <a class="footer-social-link" href="{{ section.settings.facebook_url | default: '#' }}" aria-label="Facebook">
+          <span class="footer-social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M13.5 21v-7h2.3l.4-3h-2.7V9.2c0-.9.3-1.5 1.6-1.5h1.3V5.1c-.2 0-1-.1-2-.1-2.7 0-4.4 1.6-4.4 4.5V11H8v3h2.1v7h3.4Z" fill="currentColor"/></svg>
+          </span>
+          <span>Facebook</span>
+        </a>
+
+        <a class="footer-social-link" href="{{ section.settings.instagram_url | default: '#' }}" aria-label="Instagram">
+          <span class="footer-social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M12 7.1A4.9 4.9 0 1 0 12 17a4.9 4.9 0 0 0 0-9.9Zm0 8.1a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Z" fill="currentColor"/><path d="M17.6 3.8H6.4A2.6 2.6 0 0 0 3.8 6.4v11.2a2.6 2.6 0 0 0 2.6 2.6h11.2a2.6 2.6 0 0 0 2.6-2.6V6.4a2.6 2.6 0 0 0-2.6-2.6Zm.9 13.8c0 .5-.4.9-.9.9H6.4a.9.9 0 0 1-.9-.9V6.4c0-.5.4-.9.9-.9h11.2c.5 0 .9.4.9.9v11.2Z" fill="currentColor"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+          </span>
+          <span>Instagram</span>
+        </a>
+
+        <a class="footer-social-link" href="{{ section.settings.tiktok_url | default: '#' }}" aria-label="TikTok">
+          <span class="footer-social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M14.8 4h2.8c.2 1.5 1.4 2.7 2.9 3v2.9c-1.2-.1-2.4-.5-3.5-1.2v5.7a5.4 5.4 0 1 1-5.4-5.4c.3 0 .7 0 1 .1V12a2.7 2.7 0 1 0 1.6 2.4V4Z" fill="currentColor"/></svg>
+          </span>
+          <span>TikTok</span>
+        </a>
       </div>
     </div>
   </div>
