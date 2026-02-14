@@ -8,15 +8,16 @@
       <button class="carousel-nav carousel-nav--prev" type="button" aria-label="Scroll categories left" data-carousel-prev="categories-{{ section.id }}">‹</button>
       <div class="category-grid-cards" id="categories-{{ section.id }}" data-carousel-track>
         {% for block in section.blocks %}
-          <article class="category-card" {{ block.shopify_attributes }}>
-            <a href="{{ block.settings.link | default: '/collections/all' }}">
-              <div class="category-card-top">
-                <span class="category-icon" aria-hidden="true">{{ block.settings.icon }}</span>
-                <h3>{{ block.settings.title }}</h3>
-              </div>
-              {% if block.settings.image != blank %}
-                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 30vw, 70vw', widths: '280,375,550,600', alt: block.settings.title }}
-              {% endif %}
+          <article class="category-item" {{ block.shopify_attributes }}>
+            <a class="category-link" href="{{ block.settings.link | default: '/collections/all' }}">
+              <span class="category-circle">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 280 | image_tag: loading: 'lazy', sizes: '140px', widths: '140,180,240,280', alt: block.settings.title, class: 'category-circle-image' }}
+                {% else %}
+                  <span class="category-icon" aria-hidden="true">{{ block.settings.icon }}</span>
+                {% endif %}
+              </span>
+              <h3>{{ block.settings.title }}</h3>
             </a>
           </article>
         {% endfor %}
