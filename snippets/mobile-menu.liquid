@@ -1,0 +1,45 @@
+<aside class="ozh-mobile" id="MobileDrawer" aria-label="Mobile menu" hidden>
+  <div class="ozh-mobile__header">
+    <h2>Menu</h2>
+    <button type="button" data-mobile-toggle aria-label="Close mobile menu">×</button>
+  </div>
+
+  <details open>
+    <summary>Categories</summary>
+    <ul role="list">
+      {% if section.settings.categories_menu.links != blank %}
+        {% for link in section.settings.categories_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+  </details>
+
+  <nav aria-label="Customer links">
+    <a href="{{ routes.account_url }}">Account</a>
+    <a href="/account/orders">Orders</a>
+    <a href="/pages/wishlist">Wishlist</a>
+  </nav>
+
+  <details>
+    <summary>Support links</summary>
+    <ul role="list">
+      {% if section.settings.support_menu.links != blank %}
+        {% for link in section.settings.support_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+  </details>
+
+  <details>
+    <summary>Company links</summary>
+    <ul role="list">
+      {% if section.settings.company_menu.links != blank %}
+        {% for link in section.settings.company_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+  </details>
+</aside>

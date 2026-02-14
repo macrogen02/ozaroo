@@ -1,0 +1,93 @@
+<section class="hero-banner section-spacing" data-hero-carousel>
+  <div class="page-width hero-carousel">
+    <div class="hero-carousel-track" data-hero-track>
+      {% for block in section.blocks %}
+        <article class="hero-slide{% if forloop.first %} is-active{% endif %}" data-hero-slide {{ block.shopify_attributes }}>
+          <div class="hero-grid">
+            <div class="hero-content">
+              <p class="eyebrow">{{ block.settings.eyebrow | default: 'Shop Smarter. Shop Ozaroo.' }}</p>
+              <h1>{{ block.settings.heading }}</h1>
+              <p class="hero-subtext">{{ block.settings.subtext }}</p>
+              {% if block.settings.button_label != blank %}
+                <a class="button button--coral" href="{{ block.settings.button_link | default: '/collections/all' }}">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+            </div>
+
+            {% if block.settings.image != blank %}
+              <div class="hero-image-wrap">
+                {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 50vw, 100vw', widths: '375,550,750,990,1200,1400', alt: block.settings.heading }}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if section.blocks.size > 1 %}
+      <div class="hero-carousel-controls">
+        <button class="carousel-nav carousel-nav--prev" type="button" aria-label="Previous banner" data-hero-prev>‹</button>
+        <button class="carousel-nav carousel-nav--next" type="button" aria-label="Next banner" data-hero-next>›</button>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow text",
+          "default": "Shop Smarter. Shop Ozaroo."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Shop Smarter. Shop Ozaroo."
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "Your trusted destination for everyday shopping across Australia."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Start shopping"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Hero image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide", "settings": { "heading": "Daily deals for every home", "subtext": "Save more with curated offers across top categories.", "button_label": "View deals" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

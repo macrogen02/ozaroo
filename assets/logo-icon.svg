@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ozaroo icon</title>
+  <desc id="desc">Minimal forward-leaning circular kangaroo mark.</desc>
+  <circle cx="32" cy="32" r="30" fill="#0A1F44"/>
+  <path d="M16 36C20 27 31 24 40 25C39 20 42 17 47 15C47 20 45 24 43 26C47 29 49 34 49 39C49 47 43 53 35 53C27 53 20 49 16 42L23 40C26 44 30 46 35 46C39 46 42 43 42 39C42 35 39 32 35 32C32 32 29 33 27 35L16 36Z" fill="#FF4B4B"/>
+  <circle cx="34" cy="39" r="6" fill="#F4B400"/>
+</svg>

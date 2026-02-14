@@ -1,0 +1,27 @@
+<div class="ozh-mega" id="HeaderMegaMenu" data-mega-panel hidden>
+  <div class="ozh-mega__col">
+    <h3>Shop by category</h3>
+    <ul role="list">
+      {% if section.settings.mega_menu.links != blank %}
+        {% for link in section.settings.mega_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      {% else %}
+        <li><a href="/collections/electronics">Electronics</a></li>
+        <li><a href="/collections/home-living">Home &amp; Living</a></li>
+        <li><a href="/collections/groceries">Groceries</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="ozh-mega__col">
+    <h3>Featured picks</h3>
+    <p>{{ section.settings.mega_promo_text }}</p>
+  </div>
+  <div class="ozh-mega__col">
+    {% if section.settings.mega_banner != blank %}
+      {{ section.settings.mega_banner | image_url: width: 680 | image_tag: loading: 'lazy', widths: '320,480,680', alt: 'Category banner' }}
+    {% else %}
+      <div class="ozh-mega__placeholder">Category promotion banner</div>
+    {% endif %}
+  </div>
+</div>

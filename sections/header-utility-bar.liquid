@@ -1,0 +1,42 @@
+<section class="ozh-utility" data-utility-bar>
+  <div class="page-width ozh-utility__inner">
+    <button class="ozh-utility__toggle" type="button" aria-expanded="false" aria-controls="UtilityBarContent" data-utility-toggle>
+      <span>Info & links</span>
+    </button>
+
+    <div id="UtilityBarContent" class="ozh-utility__content">
+      <div class="ozh-utility__left">
+        <span class="ozh-utility__label">Delivering Australia-wide</span>
+        <button type="button" class="ozh-postcode-pill" aria-label="Set delivery postcode" data-delivery-toggle>
+          <span>Postcode 3000</span>
+        </button>
+      </div>
+
+      <nav class="ozh-utility__links" aria-label="Utility links">
+        {% if section.settings.utility_links.links != blank %}
+          {% for link in section.settings.utility_links.links %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        {% else %}
+          <a href="/pages/help-centre">Help Centre</a>
+          <a href="/pages/track-order">Track Order</a>
+          <a href="/pages/sell-on-ozaroo">Sell on Ozaroo</a>
+          <a href="/collections/deals">Deals</a>
+        {% endif %}
+      </nav>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Header utility bar",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "utility_links",
+      "label": "Utility links menu"
+    }
+  ]
+}
+{% endschema %}

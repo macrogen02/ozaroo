@@ -1,0 +1,96 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Shop Smarter. Shop Ozaroo.",
+            "heading": "Shop Smarter. Shop Ozaroo.",
+            "subtext": "Discover trusted everyday essentials, curated for fast Australian delivery.",
+            "button_label": "Shop now",
+            "button_link": "/collections/all"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Shop Smarter. Shop Ozaroo.",
+            "heading": "Big value, every single day",
+            "subtext": "Explore top brands, unbeatable offers, and nationwide delivery.",
+            "button_label": "Explore offers",
+            "button_link": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2"]
+    },
+    "categories": {
+      "type": "category-grid",
+      "settings": {
+        "heading": "Shop by Category"
+      },
+      "blocks": {
+        "cat_1": {
+          "type": "category",
+          "settings": {
+            "icon": "📱",
+            "title": "Electronics",
+            "link": "/collections/electronics"
+          }
+        },
+        "cat_2": {
+          "type": "category",
+          "settings": {
+            "icon": "🏠",
+            "title": "Home & Living",
+            "link": "/collections/home-living"
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "icon": "💄",
+            "title": "Beauty",
+            "link": "/collections/beauty"
+          }
+        },
+        "cat_4": {
+          "type": "category",
+          "settings": {
+            "icon": "👕",
+            "title": "Fashion",
+            "link": "/collections/fashion"
+          }
+        },
+        "cat_5": {
+          "type": "category",
+          "settings": {
+            "icon": "🏃",
+            "title": "Sports",
+            "link": "/collections/sports"
+          }
+        },
+        "cat_6": {
+          "type": "category",
+          "settings": {
+            "icon": "🧺",
+            "title": "Groceries",
+            "link": "/collections/groceries"
+          }
+        }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4", "cat_5", "cat_6"]
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Featured picks",
+        "collection": "",
+        "products_to_show": 4
+      }
+    }
+  },
+  "order": ["hero", "categories", "featured"]
+}

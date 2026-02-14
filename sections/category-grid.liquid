@@ -1,0 +1,86 @@
+<section class="category-grid section-spacing">
+  <div class="page-width">
+    <div class="section-header">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="category-carousel-wrap">
+      <button class="carousel-nav carousel-nav--prev" type="button" aria-label="Scroll categories left" data-carousel-prev="categories-{{ section.id }}">‹</button>
+      <div class="category-grid-cards" id="categories-{{ section.id }}" data-carousel-track>
+        {% for block in section.blocks %}
+          <article class="category-item" {{ block.shopify_attributes }}>
+            <a class="category-link" href="{{ block.settings.link | default: '/collections/all' }}">
+              <span class="category-circle">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 280 | image_tag: loading: 'lazy', sizes: '140px', widths: '140,180,240,280', alt: block.settings.title, class: 'category-circle-image' }}
+                {% else %}
+                  <span class="category-icon" aria-hidden="true">{{ block.settings.icon }}</span>
+                {% endif %}
+              </span>
+              <h3>{{ block.settings.title }}</h3>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+      <button class="carousel-nav carousel-nav--next" type="button" aria-label="Scroll categories right" data-carousel-next="categories-{{ section.id }}">›</button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category grid",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji or short text)",
+          "default": "🛍️"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category grid",
+      "blocks": [
+        { "type": "category", "settings": { "icon": "📱", "title": "Electronics" } },
+        { "type": "category", "settings": { "icon": "🏠", "title": "Home & Living" } },
+        { "type": "category", "settings": { "icon": "💄", "title": "Beauty" } },
+        { "type": "category", "settings": { "icon": "👕", "title": "Fashion" } },
+        { "type": "category", "settings": { "icon": "🏃", "title": "Sports" } },
+        { "type": "category", "settings": { "icon": "🧺", "title": "Groceries" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
