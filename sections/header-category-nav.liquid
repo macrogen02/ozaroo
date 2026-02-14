@@ -1,0 +1,36 @@
+<nav class="ozh-category-nav ozh-sticky-target" aria-label="Category navigation" data-mega-trigger>
+  <div class="page-width ozh-category-nav__scroller">
+    {% if section.settings.category_menu.links != blank %}
+      {% for link in section.settings.category_menu.links %}
+        <a href="{{ link.url }}" class="ozh-category-nav__link{% if link.title contains 'Deal' %} is-deal{% endif %}">
+          {{ link.title }}
+          {% if link.title contains 'Deal' %}<span class="ozh-deal-badge">Hot</span>{% endif %}
+        </a>
+      {% endfor %}
+    {% else %}
+      <a href="/collections/all" class="ozh-category-nav__link">All Categories</a>
+      <a href="/collections/electronics" class="ozh-category-nav__link">Electronics</a>
+      <a href="/collections/home-living" class="ozh-category-nav__link">Home &amp; Living</a>
+      <a href="/collections/groceries" class="ozh-category-nav__link">Groceries</a>
+      <a href="/collections/health-beauty" class="ozh-category-nav__link">Health &amp; Beauty</a>
+      <a href="/collections/fashion" class="ozh-category-nav__link">Fashion</a>
+      <a href="/collections/baby-kids" class="ozh-category-nav__link">Baby &amp; Kids</a>
+      <a href="/collections/sports-outdoors" class="ozh-category-nav__link">Sports &amp; Outdoors</a>
+      <a href="/collections/automotive" class="ozh-category-nav__link">Automotive</a>
+      <a href="/collections/deals" class="ozh-category-nav__link is-deal">Deals <span class="ozh-deal-badge">Hot</span></a>
+    {% endif %}
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Header category nav",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "category_menu",
+      "label": "Category navigation menu"
+    }
+  ]
+}
+{% endschema %}
