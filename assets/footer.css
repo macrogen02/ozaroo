@@ -173,32 +173,39 @@
 }
 
 .payment-icon {
-  width: 44px;
-  height: 44px;
+  width: 72px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 14px rgba(8, 23, 50, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .payment-icon__logo {
-  width: 24px;
+  width: 60px;
   height: 24px;
   display: block;
-  color: #ffffff;
-}
-
-.payment-icon__logo--visa,
-.payment-icon__logo--paypal {
-  color: #9fc2ff;
 }
 
 .payment-icon:hover,
 .payment-icon:focus-visible {
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+  border-color: rgba(244, 180, 0, 0.65);
+  box-shadow: 0 10px 18px rgba(8, 23, 50, 0.25);
+}
+
+.payment-icon--mastercard .payment-icon__logo,
+.payment-icon--visa .payment-icon__logo,
+.payment-icon--paypal .payment-icon__logo,
+.payment-icon--afterpay .payment-icon__logo,
+.payment-icon--zip .payment-icon__logo,
+.payment-icon--gpay .payment-icon__logo,
+.payment-icon--apple .payment-icon__logo {
+  overflow: visible;
 }
 
 .footer-payment-caption {
