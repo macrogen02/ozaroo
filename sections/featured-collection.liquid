@@ -9,9 +9,18 @@
       {% if featured_collection != blank %}
         {% for product in featured_collection.products limit: section.settings.products_to_show %}
           <article class="product-card" role="listitem">
+            {% assign rating_value = product.metafields.reviews.rating.value | default: product.metafields.custom.rating.value | default: 4 %}
+            {% assign rating = rating_value | plus: 0 | round %}
+            {% if rating < 1 %}{% assign rating = 1 %}{% endif %}
+            {% if rating > 5 %}{% assign rating = 5 %}{% endif %}
             <a href="{{ product.url }}" class="product-media-link">
+              <span class="product-rating-badge" aria-label="Rated {{ rating }} out of 5">
+                <span aria-hidden="true">{% for star in (1..5) %}{% if star <= rating %}★{% else %}☆{% endif %}{% endfor %}</span>
+              </span>
               {% if product.featured_image != blank %}
                 {{ product.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 25vw, 50vw', widths: '320,550,720', alt: product.title }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'product-placeholder product-placeholder--image' }}
               {% endif %}
             </a>
             <div class="product-card-content">
@@ -38,7 +47,8 @@
       {% else %}
         {% for i in (1..section.settings.products_to_show) %}
           <article class="product-card" role="listitem">
-            <div class="product-placeholder"></div>
+            <span class="product-rating-badge" aria-label="Rated 4 out of 5"><span aria-hidden="true">★★★★☆</span></span>
+            <div class="product-placeholder product-placeholder--image"></div>
             <div class="product-card-content">
               <h3>Product {{ i }}</h3>
               <p class="price-wrap"><span class="price">$0.00</span></p>
