@@ -173,35 +173,32 @@
 }
 
 .payment-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 7px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  letter-spacing: 0.01em;
-}
-
-.payment-icon__glyph {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.24);
 }
 
-.payment-icon__glyph svg {
-  width: 14px;
-  height: 14px;
+.payment-icon__logo {
+  width: 24px;
+  height: 24px;
   display: block;
+  color: #ffffff;
+}
+
+.payment-icon__logo--visa,
+.payment-icon__logo--paypal {
+  color: #9fc2ff;
+}
+
+.payment-icon:hover,
+.payment-icon:focus-visible {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .footer-payment-caption {
