@@ -33,17 +33,43 @@
     });
   });
 
-  const deliveryInfo = document.getElementById('DeliveryInfo');
-  const deliveryToggles = document.querySelectorAll('[data-delivery-toggle]');
-  deliveryToggles.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      if (!deliveryInfo) return;
-      const hidden = deliveryInfo.hasAttribute('hidden');
-      if (hidden) deliveryInfo.removeAttribute('hidden');
-      else deliveryInfo.setAttribute('hidden', 'hidden');
-      if (btn.hasAttribute('aria-expanded')) btn.setAttribute('aria-expanded', String(hidden));
+  const deliveryControl = document.querySelector('[data-delivery-control]');
+  const deliveryToggle = document.querySelector('[data-delivery-toggle]');
+  const deliveryExpand = document.getElementById('DeliveryAddressInput');
+  const deliveryAddressField = document.getElementById('DeliveryAddressField');
+
+  const closeDeliveryExpand = function () {
+    if (!deliveryControl || !deliveryToggle || !deliveryExpand) return;
+    deliveryControl.classList.remove('is-expanded');
+    deliveryToggle.setAttribute('aria-expanded', 'false');
+    deliveryExpand.setAttribute('aria-hidden', 'true');
+  };
+
+  if (deliveryControl && deliveryToggle && deliveryExpand) {
+    deliveryToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const open = !deliveryControl.classList.contains('is-expanded');
+      if (open) {
+        deliveryControl.classList.add('is-expanded');
+        deliveryToggle.setAttribute('aria-expanded', 'true');
+        deliveryExpand.setAttribute('aria-hidden', 'false');
+        if (deliveryAddressField) deliveryAddressField.focus();
+      } else {
+        closeDeliveryExpand();
+      }
     });
-  });
+
+    deliveryExpand.addEventListener('click', function (event) {
+      event.stopPropagation();
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!deliveryControl.classList.contains('is-expanded')) return;
+      if (deliveryControl.contains(event.target)) return;
+      closeDeliveryExpand();
+    });
+  }
 
   const searchWrap = document.querySelector('[data-search-wrap]');
   const searchDropdown = document.querySelector('[data-search-dropdown]');
@@ -108,6 +134,6 @@
   document.addEventListener('keydown', function (event) {
     if (event.key !== 'Escape') return;
     if (mobileDrawer && !mobileDrawer.hasAttribute('hidden')) mobileDrawer.setAttribute('hidden', 'hidden');
-    if (deliveryInfo && !deliveryInfo.hasAttribute('hidden')) deliveryInfo.setAttribute('hidden', 'hidden');
+    closeDeliveryExpand();
   });
 })();

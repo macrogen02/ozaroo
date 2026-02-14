@@ -15,10 +15,16 @@
       </button>
 
       {% if section.settings.show_delivery_selector %}
-        <button class="ozh-delivery-pill" type="button" data-delivery-toggle aria-expanded="false" aria-controls="DeliveryInfo" aria-label="Fast delivery options">
-          <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M3 7h11.5a1 1 0 0 1 .9.6l1 2.4h2.2c1 0 1.9.8 1.9 1.9V15h-1.6a2.9 2.9 0 0 0-5.8 0H10a2.9 2.9 0 0 0-5.8 0H3V8c0-.6.4-1 1-1Zm14.4 4.6-.7-1.7h1.7l1.2 1.7h-2.2ZM7.1 17.8a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm8.8 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Z" fill="currentColor"/></svg>
-          <span class="ozh-delivery-pill__label">Fast delivery</span>
-        </button>
+        <div class="ozh-delivery-control" data-delivery-control>
+          <button class="ozh-delivery-pill" type="button" data-delivery-toggle aria-expanded="false" aria-controls="DeliveryAddressInput" aria-label="Add your delivery address">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M3 7h11.5a1 1 0 0 1 .9.6l1 2.4h2.2c1 0 1.9.8 1.9 1.9V15h-1.6a2.9 2.9 0 0 0-5.8 0H10a2.9 2.9 0 0 0-5.8 0H3V8c0-.6.4-1 1-1Zm14.4 4.6-.7-1.7h1.7l1.2 1.7h-2.2ZM7.1 17.8a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm8.8 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Z" fill="currentColor"/></svg>
+            <span class="ozh-delivery-pill__label">Fast delivery</span>
+          </button>
+          <div class="ozh-delivery-expand" id="DeliveryAddressInput" aria-hidden="true">
+            <label for="DeliveryAddressField" class="visually-hidden">Preferred delivery address</label>
+            <input id="DeliveryAddressField" type="text" name="delivery_address" placeholder="Enter preferred delivery address">
+          </div>
+        </div>
       {% endif %}
     </div>
 
@@ -34,12 +40,6 @@
   {% render 'mega-menu', section: section %}
   {% render 'mobile-menu', section: section %}
 
-  {% if section.settings.show_delivery_selector %}
-    <div class="ozh-delivery-dropdown" id="DeliveryInfo" hidden>
-      <p>Fast delivery options</p>
-      <p>Express dispatch available Australia-wide</p>
-    </div>
-  {% endif %}
 
 </header>
 
