@@ -33,4 +33,42 @@
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  document.querySelectorAll('[data-carousel-prev]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      const target = document.getElementById(button.getAttribute('data-carousel-prev'));
+      if (!target) return;
+      target.scrollBy({ left: -260, behavior: 'smooth' });
+    });
+  });
+
+  document.querySelectorAll('[data-carousel-next]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      const target = document.getElementById(button.getAttribute('data-carousel-next'));
+      if (!target) return;
+      target.scrollBy({ left: 260, behavior: 'smooth' });
+    });
+  });
+
+  const heroCarousel = document.querySelector('[data-hero-carousel]');
+  if (heroCarousel) {
+    const slides = heroCarousel.querySelectorAll('[data-hero-slide]');
+    const prev = heroCarousel.querySelector('[data-hero-prev]');
+    const next = heroCarousel.querySelector('[data-hero-next]');
+    let index = 0;
+
+    const setSlide = function (newIndex) {
+      if (!slides.length) return;
+      slides[index].classList.remove('is-active');
+      index = (newIndex + slides.length) % slides.length;
+      slides[index].classList.add('is-active');
+    };
+
+    if (prev) prev.addEventListener('click', function () { setSlide(index - 1); });
+    if (next) next.addEventListener('click', function () { setSlide(index + 1); });
+
+    if (slides.length > 1) {
+      setInterval(function () { setSlide(index + 1); }, 5000);
+    }
+  }
 })();
