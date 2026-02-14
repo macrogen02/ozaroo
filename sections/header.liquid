@@ -9,7 +9,7 @@
         {% render 'logo' %}
       </a>
 
-      <button class="ozh-category-trigger" type="button" data-category-overlay-toggle aria-expanded="false" aria-controls="CategoryOverlay">
+      <button class="ozh-category-trigger" type="button" data-mega-toggle aria-expanded="false" aria-controls="HeaderMegaMenu">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z" fill="currentColor"/></svg>
         <span>Shop by Category</span>
       </button>
@@ -40,24 +40,6 @@
     </div>
   {% endif %}
 
-  {% if section.settings.enable_category_overlay %}
-    <div class="ozh-category-overlay" id="CategoryOverlay" hidden>
-      <div class="ozh-category-overlay__head">
-        <h2>Shop by Category</h2>
-        <button type="button" data-category-overlay-toggle aria-label="Close category panel">×</button>
-      </div>
-      <div class="ozh-category-overlay__grid">
-        {% for block in section.blocks %}
-          {% if block.type == 'overlay_category' %}
-            <a href="{{ block.settings.link | default: '/collections/all' }}" class="ozh-category-tile" {{ block.shopify_attributes }}>
-              <span aria-hidden="true">{{ block.settings.icon }}</span>
-              <span>{{ block.settings.label }}</span>
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
 </header>
 
 {% schema %}
@@ -74,12 +56,6 @@
       "type": "checkbox",
       "id": "enable_predictive_search",
       "label": "Enable predictive search panel",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_category_overlay",
-      "label": "Enable category overlay",
       "default": true
     },
     {

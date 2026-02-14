@@ -33,20 +33,6 @@
     });
   });
 
-  const categoryOverlay = document.getElementById('CategoryOverlay');
-  const categoryToggles = document.querySelectorAll('[data-category-overlay-toggle]');
-  categoryToggles.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      if (!categoryOverlay) return;
-      const hidden = categoryOverlay.hasAttribute('hidden');
-      if (hidden) categoryOverlay.removeAttribute('hidden');
-      else categoryOverlay.setAttribute('hidden', 'hidden');
-      categoryToggles.forEach(function (t) {
-        if (t.hasAttribute('aria-expanded')) t.setAttribute('aria-expanded', String(hidden));
-      });
-    });
-  });
-
   const deliveryInfo = document.getElementById('DeliveryInfo');
   const deliveryToggles = document.querySelectorAll('[data-delivery-toggle]');
   deliveryToggles.forEach(function (btn) {
@@ -72,35 +58,33 @@
     });
   }
 
-  const megaTrigger = document.querySelector('[data-mega-trigger]');
   const megaPanel = document.querySelector('[data-mega-panel]');
-  if (megaTrigger && megaPanel && window.matchMedia('(min-width: 990px)').matches) {
-    let enterTimer;
-    let leaveTimer;
-
-    const openMega = function () {
-      clearTimeout(leaveTimer);
-      enterTimer = setTimeout(function () {
+  const megaToggle = document.querySelector('[data-mega-toggle]');
+  if (megaToggle && megaPanel) {
+    megaToggle.addEventListener('click', function () {
+      const hidden = megaPanel.hasAttribute('hidden');
+      if (hidden) {
         megaPanel.removeAttribute('hidden');
-      }, 120);
-    };
-
-    const closeMega = function () {
-      clearTimeout(enterTimer);
-      leaveTimer = setTimeout(function () {
+      } else {
         megaPanel.setAttribute('hidden', 'hidden');
-      }, 160);
-    };
+      }
+      megaToggle.setAttribute('aria-expanded', String(hidden));
+    });
 
-    megaTrigger.addEventListener('mouseenter', openMega);
-    megaTrigger.addEventListener('mouseleave', closeMega);
-    megaPanel.addEventListener('mouseenter', openMega);
-    megaPanel.addEventListener('mouseleave', closeMega);
+    document.addEventListener('click', function (event) {
+      if (megaPanel.hasAttribute('hidden')) return;
+      if (megaPanel.contains(event.target) || megaToggle.contains(event.target)) return;
+      megaPanel.setAttribute('hidden', 'hidden');
+      megaToggle.setAttribute('aria-expanded', 'false');
+    });
   }
 
   document.addEventListener('keydown', function (event) {
     if (event.key !== 'Escape') return;
-    if (categoryOverlay && !categoryOverlay.hasAttribute('hidden')) categoryOverlay.setAttribute('hidden', 'hidden');
+    if (megaPanel && !megaPanel.hasAttribute('hidden')) {
+      megaPanel.setAttribute('hidden', 'hidden');
+      if (megaToggle) megaToggle.setAttribute('aria-expanded', 'false');
+    }
     if (mobileDrawer && !mobileDrawer.hasAttribute('hidden')) mobileDrawer.setAttribute('hidden', 'hidden');
     if (deliveryInfo && !deliveryInfo.hasAttribute('hidden')) deliveryInfo.setAttribute('hidden', 'hidden');
   });
