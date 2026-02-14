@@ -295,8 +295,7 @@
 
   .ozh-mobile-trigger { display: inline-flex; }
   .ozh-category-trigger,
-  .ozh-delivery-pill,
-  .ozh-icons .ozh-icon-link:not(.ozh-icon-link--cart) { display: none; }
+  .ozh-delivery-pill { display: none; }
 
   .ozh-header__left {
     display: grid;
@@ -305,8 +304,23 @@
   }
 
   .ozh-logo { justify-self: center; }
-  .ozh-header__right { justify-content: flex-end; }
+  .ozh-header__right { justify-content: flex-start; }
   .ozh-category-nav { top: 56px; }
+
+  .ozh-icons {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .ozh-icon-link {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+
+  .ozh-icon-link > span:not(.ozh-cart-count) { display: none; }
 
   .ozh-search {
     grid-template-columns: 1fr auto;
@@ -470,4 +484,14 @@
 
 @media (max-width: 749px) {
   .ozh-category-nav { top: 56px; }
+  .ozh-icons {
+    justify-content: flex-start;
+    gap: 6px;
+  }
+  .ozh-icon-link {
+    width: 36px;
+    min-width: 36px;
+    padding: 0;
+  }
+  .ozh-icon-link > span:not(.ozh-cart-count) { display: none; }
 }
