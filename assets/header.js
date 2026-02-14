@@ -58,33 +58,55 @@
     });
   }
 
-  const megaPanel = document.querySelector('[data-mega-panel]');
-  const megaToggle = document.querySelector('[data-mega-toggle]');
-  if (megaToggle && megaPanel) {
-    megaToggle.addEventListener('click', function () {
+  const megaToggles = document.querySelectorAll('[data-mega-toggle]');
+  const closeMegaPanel = function (panel, toggles) {
+    panel.setAttribute('hidden', 'hidden');
+    toggles.forEach(function (toggle) {
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  };
+
+  megaToggles.forEach(function (toggle) {
+    const panelId = toggle.getAttribute('aria-controls');
+    const megaPanel = panelId ? document.getElementById(panelId) : null;
+    if (!megaPanel) return;
+
+    const linkedToggles = Array.prototype.filter.call(megaToggles, function (item) {
+      return item.getAttribute('aria-controls') === panelId;
+    });
+
+    toggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
       const hidden = megaPanel.hasAttribute('hidden');
       if (hidden) {
         megaPanel.removeAttribute('hidden');
       } else {
-        megaPanel.setAttribute('hidden', 'hidden');
+        closeMegaPanel(megaPanel, linkedToggles);
+        return;
       }
-      megaToggle.setAttribute('aria-expanded', String(hidden));
+      linkedToggles.forEach(function (item) {
+        item.setAttribute('aria-expanded', String(hidden));
+      });
     });
 
-    document.addEventListener('click', function (event) {
-      if (megaPanel.hasAttribute('hidden')) return;
-      if (megaPanel.contains(event.target) || megaToggle.contains(event.target)) return;
-      megaPanel.setAttribute('hidden', 'hidden');
-      megaToggle.setAttribute('aria-expanded', 'false');
+    megaPanel.addEventListener('click', function (event) {
+      event.stopPropagation();
     });
-  }
+
+    document.addEventListener('click', function () {
+      if (megaPanel.hasAttribute('hidden')) return;
+      closeMegaPanel(megaPanel, linkedToggles);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      if (!megaPanel.hasAttribute('hidden')) closeMegaPanel(megaPanel, linkedToggles);
+    });
+  });
 
   document.addEventListener('keydown', function (event) {
     if (event.key !== 'Escape') return;
-    if (megaPanel && !megaPanel.hasAttribute('hidden')) {
-      megaPanel.setAttribute('hidden', 'hidden');
-      if (megaToggle) megaToggle.setAttribute('aria-expanded', 'false');
-    }
     if (mobileDrawer && !mobileDrawer.hasAttribute('hidden')) mobileDrawer.setAttribute('hidden', 'hidden');
     if (deliveryInfo && !deliveryInfo.hasAttribute('hidden')) deliveryInfo.setAttribute('hidden', 'hidden');
   });
