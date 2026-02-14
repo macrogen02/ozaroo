@@ -52,10 +52,40 @@
 
   const heroCarousel = document.querySelector('[data-hero-carousel]');
   if (heroCarousel) {
+    const heroTrack = heroCarousel.querySelector('[data-hero-track]');
     const slides = heroCarousel.querySelectorAll('[data-hero-slide]');
     const prev = heroCarousel.querySelector('[data-hero-prev]');
     const next = heroCarousel.querySelector('[data-hero-next]');
     let index = 0;
+
+    const updateHeroTrackHeight = function () {
+      if (!heroTrack || !slides.length) return;
+      let maxHeight = 0;
+
+      slides.forEach(function (slide) {
+        const previousDisplay = slide.style.display;
+        const previousPosition = slide.style.position;
+        const previousVisibility = slide.style.visibility;
+        const previousPointerEvents = slide.style.pointerEvents;
+
+        slide.style.display = 'block';
+        slide.style.position = 'absolute';
+        slide.style.visibility = 'hidden';
+        slide.style.pointerEvents = 'none';
+
+        const slideHeight = slide.offsetHeight;
+        if (slideHeight > maxHeight) maxHeight = slideHeight;
+
+        slide.style.display = previousDisplay;
+        slide.style.position = previousPosition;
+        slide.style.visibility = previousVisibility;
+        slide.style.pointerEvents = previousPointerEvents;
+      });
+
+      if (maxHeight > 0) {
+        heroTrack.style.minHeight = maxHeight + 'px';
+      }
+    };
 
     const setSlide = function (newIndex) {
       if (!slides.length) return;
@@ -66,6 +96,14 @@
 
     if (prev) prev.addEventListener('click', function () { setSlide(index - 1); });
     if (next) next.addEventListener('click', function () { setSlide(index + 1); });
+
+    const heroImages = heroCarousel.querySelectorAll('img');
+    heroImages.forEach(function (image) {
+      image.addEventListener('load', updateHeroTrackHeight);
+    });
+
+    window.addEventListener('resize', updateHeroTrackHeight);
+    updateHeroTrackHeight();
 
     if (slides.length > 1) {
       setInterval(function () { setSlide(index + 1); }, 5000);
