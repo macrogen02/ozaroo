@@ -153,8 +153,9 @@
 .footer-social-link svg { width: 17px; height: 17px; }
 
 .footer-payment-row {
-  background: var(--navy-main);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(180deg, rgba(20, 43, 85, 0.96), rgba(10, 31, 68, 1));
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-payment-row__inner {
@@ -172,13 +173,35 @@
 }
 
 .payment-icon {
-  background: #fff;
-  color: #0a1f44;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 6px 9px;
-  border-radius: 8px;
-  border: 1px solid rgba(10, 31, 68, 0.08);
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  letter-spacing: 0.01em;
+}
+
+.payment-icon__glyph {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.payment-icon__glyph svg {
+  width: 14px;
+  height: 14px;
+  display: block;
 }
 
 .footer-payment-caption {

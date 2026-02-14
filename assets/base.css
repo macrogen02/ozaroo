@@ -186,19 +186,21 @@ img { max-width: 100%; height: auto; display: block; }
 .header-search {
   display: none;
   align-items: center;
+  justify-self: center;
   gap: 6px;
   min-width: 0;
-  width: 240px;
+  width: clamp(220px, 24vw, 320px);
   background: #f3f6ff;
   border: 1px solid rgba(10, 31, 68, 0.12);
   border-radius: 999px;
   padding: 4px 6px;
-  transition: width var(--transition-default), border-color var(--transition-default), box-shadow var(--transition-default);
+  transition: width var(--transition-default), margin var(--transition-default), border-color var(--transition-default), box-shadow var(--transition-default);
 }
 
 .header-search:hover,
 .header-search:focus-within {
-  width: min(520px, 42vw);
+  width: clamp(320px, 42vw, 560px);
+  margin-inline: calc((clamp(220px, 24vw, 320px) - clamp(320px, 42vw, 560px)) / 2);
   border-color: rgba(10, 31, 68, 0.24);
   box-shadow: 0 0 0 3px rgba(10, 31, 68, 0.08);
 }
