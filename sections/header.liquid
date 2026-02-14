@@ -9,11 +9,6 @@
         {% render 'logo' %}
       </a>
 
-      <button class="ozh-category-trigger" type="button" data-mega-toggle aria-expanded="false" aria-controls="HeaderMegaMenu">
-        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z" fill="currentColor"/></svg>
-        <span>Shop by Category</span>
-      </button>
-
       {% if section.settings.show_delivery_selector %}
         <button class="ozh-delivery-pill" type="button" aria-label="Fast delivery to your preferred address">
           <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M3 7h11.5a1 1 0 0 1 .9.6l1 2.4h2.2c1 0 1.9.8 1.9 1.9V15h-1.6a2.9 2.9 0 0 0-5.8 0H10a2.9 2.9 0 0 0-5.8 0H3V8c0-.6.4-1 1-1Zm14.4 4.6-.7-1.7h1.7l1.2 1.7h-2.2ZM7.1 17.8a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm8.8 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Z" fill="currentColor"/></svg>
@@ -32,7 +27,6 @@
     </div>
   </div>
 
-  {% render 'mega-menu', section: section %}
   {% render 'mobile-menu', section: section %}
 
 

@@ -22,17 +22,13 @@
     btn.addEventListener('click', function () {
       if (!mobileDrawer) return;
       const hidden = mobileDrawer.hasAttribute('hidden');
-      if (hidden) {
-        mobileDrawer.removeAttribute('hidden');
-      } else {
-        mobileDrawer.setAttribute('hidden', 'hidden');
-      }
+      if (hidden) mobileDrawer.removeAttribute('hidden');
+      else mobileDrawer.setAttribute('hidden', 'hidden');
       mobileToggles.forEach(function (t) {
         if (t.hasAttribute('aria-expanded')) t.setAttribute('aria-expanded', String(hidden));
       });
     });
   });
-
 
   const searchWrap = document.querySelector('[data-search-wrap]');
   const searchDropdown = document.querySelector('[data-search-dropdown]');
@@ -46,53 +42,6 @@
       }
     });
   }
-
-  const megaToggles = document.querySelectorAll('[data-mega-toggle]');
-  const closeMegaPanel = function (panel, toggles) {
-    panel.setAttribute('hidden', 'hidden');
-    toggles.forEach(function (toggle) {
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  };
-
-  megaToggles.forEach(function (toggle) {
-    const panelId = toggle.getAttribute('aria-controls');
-    const megaPanel = panelId ? document.getElementById(panelId) : null;
-    if (!megaPanel) return;
-
-    const linkedToggles = Array.prototype.filter.call(megaToggles, function (item) {
-      return item.getAttribute('aria-controls') === panelId;
-    });
-
-    toggle.addEventListener('click', function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      const hidden = megaPanel.hasAttribute('hidden');
-      if (hidden) {
-        megaPanel.removeAttribute('hidden');
-      } else {
-        closeMegaPanel(megaPanel, linkedToggles);
-        return;
-      }
-      linkedToggles.forEach(function (item) {
-        item.setAttribute('aria-expanded', String(hidden));
-      });
-    });
-
-    megaPanel.addEventListener('click', function (event) {
-      event.stopPropagation();
-    });
-
-    document.addEventListener('click', function () {
-      if (megaPanel.hasAttribute('hidden')) return;
-      closeMegaPanel(megaPanel, linkedToggles);
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key !== 'Escape') return;
-      if (!megaPanel.hasAttribute('hidden')) closeMegaPanel(megaPanel, linkedToggles);
-    });
-  });
 
   document.addEventListener('keydown', function (event) {
     if (event.key !== 'Escape') return;
