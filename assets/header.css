@@ -61,38 +61,54 @@
 
 .ozh-mobile-trigger { display: none; }
 .ozh-mobile-trigger svg { width: 18px; height: 18px; }
-.ozh-delivery-pill svg { width: 18px; height: 18px; flex: 0 0 auto; }
 .ozh-delivery-pill {
   position: relative;
-  justify-content: center;
   overflow: hidden;
-  min-width: 136px;
-  transform-origin: center;
-  transition: min-width 0.24s ease, padding 0.24s ease, transform 0.24s ease;
+  min-width: 148px;
+  justify-content: center;
+  transition: min-width 0.24s ease, padding 0.24s ease;
 }
 
-.ozh-delivery-pill__label { white-space: nowrap; font-weight: 600; }
-.ozh-delivery-pill__label--expanded {
+.ozh-delivery-pill svg { width: 18px; height: 18px; flex: 0 0 auto; transition: opacity 0.18s ease, transform 0.18s ease; }
+.ozh-delivery-pill__label {
+  white-space: nowrap;
+  font-weight: 600;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.ozh-delivery-pill__input {
   position: absolute;
+  inset: 5px 8px;
+  width: calc(100% - 16px);
+  border: 1px solid rgba(10, 31, 68, 0.16);
+  border-radius: 999px;
+  padding: 0 14px;
+  font: inherit;
+  color: var(--navy);
+  background: #fff;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(6px);
-  transition: opacity 0.18s ease, transform 0.2s ease;
+  transition: opacity 0.18s ease;
 }
 
-.ozh-delivery-pill:hover {
-  min-width: 320px;
-  padding-inline: 18px;
+.ozh-delivery-pill:hover,
+.ozh-delivery-pill:focus-within {
+  min-width: 340px;
+  padding-inline: 16px;
 }
 
-.ozh-delivery-pill:hover .ozh-delivery-pill__label--default {
+.ozh-delivery-pill:hover svg,
+.ozh-delivery-pill:hover .ozh-delivery-pill__label,
+.ozh-delivery-pill:focus-within svg,
+.ozh-delivery-pill:focus-within .ozh-delivery-pill__label {
   opacity: 0;
-  transform: translateY(-6px);
+  transform: scale(0.92);
 }
 
-.ozh-delivery-pill:hover .ozh-delivery-pill__label--expanded {
+.ozh-delivery-pill:hover .ozh-delivery-pill__input,
+.ozh-delivery-pill:focus-within .ozh-delivery-pill__input {
   opacity: 1;
-  transform: translateY(0);
+  pointer-events: auto;
 }
 
 
@@ -373,7 +389,6 @@
 
 .ozh-delivery-pill__label {
   font-size: 0.9rem;
-  transition: opacity 0.18s ease, transform 0.2s ease;
 }
 
 .ozh-delivery-pill:hover {
