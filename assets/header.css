@@ -63,6 +63,8 @@
 .ozh-mobile-trigger { display: none; }
 .ozh-category-trigger svg,
 .ozh-mobile-trigger svg { width: 18px; height: 18px; }
+.ozh-delivery-pill svg { width: 18px; height: 18px; flex: 0 0 auto; }
+.ozh-delivery-pill__label { white-space: nowrap; font-weight: 600; }
 
 .ozh-search {
   position: relative;
@@ -336,6 +338,10 @@
   border-color: transparent;
   background: rgba(255, 255, 255, 0.7);
   padding: 8px 10px;
+}
+
+.ozh-delivery-pill__label {
+  font-size: 0.9rem;
 }
 
 .ozh-category-trigger:hover,
