@@ -29,7 +29,7 @@
     "categories": {
       "type": "category-grid",
       "settings": {
-        "heading": "Shop by Catogory"
+        "heading": "Shop by Category"
       },
       "blocks": {
         "cat_1": {

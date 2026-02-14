@@ -303,8 +303,10 @@ img { max-width: 100%; height: auto; display: block; }
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 4px 2px 10px;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
+
+.category-grid-cards::-webkit-scrollbar { display: none; }
 
 .category-card { scroll-snap-align: start; }
 
