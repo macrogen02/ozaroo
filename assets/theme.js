@@ -6,10 +6,20 @@
   const cartDrawer = document.getElementById('CartDrawer');
 
   if (menuToggle && mobileMenu) {
+    const syncMobileMenuState = function () {
+      if (window.matchMedia('(min-width: 750px)').matches) {
+        mobileMenu.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    };
+
     menuToggle.addEventListener('click', function () {
       const isOpen = mobileMenu.classList.toggle('is-open');
       menuToggle.setAttribute('aria-expanded', String(isOpen));
     });
+
+    window.addEventListener('resize', syncMobileMenuState);
+    syncMobileMenuState();
   }
 
   if (cartToggles.length && cartDrawer) {
