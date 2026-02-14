@@ -64,7 +64,39 @@
 .ozh-category-trigger svg,
 .ozh-mobile-trigger svg { width: 18px; height: 18px; }
 .ozh-delivery-pill svg { width: 18px; height: 18px; flex: 0 0 auto; }
+.ozh-delivery-pill {
+  position: relative;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 136px;
+  transform-origin: center;
+  transition: min-width 0.24s ease, padding 0.24s ease, transform 0.24s ease;
+}
+
 .ozh-delivery-pill__label { white-space: nowrap; font-weight: 600; }
+.ozh-delivery-pill__label--expanded {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.2s ease;
+}
+
+.ozh-delivery-pill:hover {
+  min-width: 320px;
+  padding-inline: 18px;
+}
+
+.ozh-delivery-pill:hover .ozh-delivery-pill__label--default {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.ozh-delivery-pill:hover .ozh-delivery-pill__label--expanded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 .ozh-search {
   position: relative;
@@ -224,40 +256,6 @@
 .ozh-mobile details { display: grid; gap: 8px; margin-bottom: 10px; }
 .ozh-mobile a { color: var(--navy); text-decoration: none; }
 
-.ozh-delivery-control {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-.ozh-delivery-expand {
-  position: absolute;
-  left: 50%;
-  top: calc(100% + 8px);
-  transform: translateX(-50%);
-  width: 0;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-  transition: width 0.22s ease, opacity 0.18s ease;
-}
-
-.ozh-delivery-expand input {
-  width: 100%;
-  border: 1px solid var(--header-border);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--navy);
-  padding: 11px 14px;
-  box-shadow: 0 10px 22px rgba(10, 31, 68, 0.12);
-}
-
-.ozh-delivery-control.is-expanded .ozh-delivery-expand {
-  width: min(460px, 72vw);
-  opacity: 1;
-  pointer-events: auto;
-}
-
 .ozh-category-overlay {
   position: fixed;
   inset: 0;
@@ -318,8 +316,7 @@
 
   .ozh-mobile-trigger { display: inline-flex; }
   .ozh-category-trigger,
-  .ozh-delivery-pill,
-  .ozh-delivery-expand { display: none; }
+  .ozh-delivery-pill { display: none; }
 
   .ozh-header__left {
     display: grid;
@@ -380,6 +377,7 @@
 
 .ozh-delivery-pill__label {
   font-size: 0.9rem;
+  transition: opacity 0.18s ease, transform 0.2s ease;
 }
 
 .ozh-category-trigger:hover,
